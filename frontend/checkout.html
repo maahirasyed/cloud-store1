@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Checkout</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <h2 onclick="goHome()" style="cursor:pointer;">☁️ CloudShop</h2>
+</nav>
+
+<h2 style="text-align:center;">Checkout</h2>
+
+<!-- Order Summary -->
+<div id="order-summary" class="products"></div>
+
+<h3 id="total" style="text-align:center;"></h3>
+
+<!-- Form -->
+<form onsubmit="placeOrder(event)" style="text-align:center; margin-top:20px;">
+    <input type="text" placeholder="Name" required><br><br>
+    <input type="text" placeholder="Address" required><br><br>
+
+    <select>
+        <option>Cash on Delivery</option>
+        <option>UPI</option>
+        <option>Card</option>
+    </select><br><br>
+
+    <button type="submit">Place Order</button>
+</form>
+
+<script>
+const API_URL = "http://127.0.0.1:64010/products";
+let cart = JSON.parse(localStorage.getItem("cart")) || {};
+
+async function loadSummary() {
+    const res = await fetch(API_URL);
+    const products = await res.json();
+
+    let total = 0;
+    let container = document.getElementById("order-summary");
+    container.innerHTML = "";
+
+    Object.keys(cart).forEach(id => {
+        const item = products.find(p => p.id == id);
+
+        if (item) {
+            let qty = cart[id];
+            let subtotal = item.price * qty;
+            total += subtotal;
+
+            container.innerHTML += `
+                <div class="card">
+                    <h3>${item.name}</h3>
+                    <p>₹${item.price} × ${qty}</p>
+                    <p>Subtotal: ₹${subtotal}</p>
+                </div>
+            `;
+        }
+    });
+
+    document.getElementById("total").innerText = "Total: ₹" + total;
+}
+
+function placeOrder(e) {
+    e.preventDefault();
+
+    alert("Order placed successfully!");
+
+    localStorage.removeItem("cart");
+    window.location.href = "index.html";
+}
+
+function goHome() {
+    window.location.href = "index.html";
+}
+
+loadSummary();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CloudShop</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <h2>☁️ CloudShop</h2>
+
+    <div class="nav-right">
+        <!-- ✅ Search (connected to script.js) -->
+        <input type="text" id="search" placeholder="Search products...">
+
+        <!-- Wishlist -->
+        <div class="wishlist" style="cursor: pointer;">
+            ❤️ <span id="wish-count">0</span>
+        </div>
+
+        <!-- Cart -->
+        <div class="cart" onclick="goToCart()" style="cursor: pointer;">
+            🛒 <span id="cart-count">0</span>
+        </div>
+    </div>
+</nav>
+
+<!-- Banner -->
+<section class="banner">
+    <h1>Cloud-Native Shopping</h1>
+    <p>Fast • Scalable • Dockerized</p>
+</section>
+
+<!-- Products -->
+<section class="products" id="product-list"></section>
+
+<!-- Empty state (optional but useful) -->
+<p id="no-products" style="text-align:center; display:none;">
+    No products found
+</p>
+
+<!-- Footer -->
+<footer style="text-align:center; padding:20px; margin-top:30px;">
+    <p>© 2026 CloudShop | Built with Docker + Kubernetes</p>
+</footer>
+
+<!-- Script -->
+<script src="script.js"></script>
+
+</body>
+</html>

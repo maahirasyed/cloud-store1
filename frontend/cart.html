@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cart</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <h2 onclick="goHome()" style="cursor:pointer;">☁️ CloudShop</h2>
+</nav>
+
+<h2 style="text-align:center;">Your Cart</h2>
+
+<!-- Cart Items -->
+<div id="cart-items" class="products"></div>
+
+<!-- Total -->
+<h3 id="total" style="text-align:center;"></h3>
+
+<!-- Checkout -->
+<div style="text-align:center; margin-top:20px;">
+    <button onclick="checkout()">Proceed to Checkout</button>
+</div>
+
+<script src="cart.js"></script>
+
+</body>
+</html>
